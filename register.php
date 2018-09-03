@@ -31,23 +31,21 @@
         <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
 
         <label for="lastname" class="sr-only">First name</label>
-        <input type="name" id="inputFirstname" class="form-control" placeholder="First name" required>
+        <input type="text" id="inputFirstname" class="form-control" placeholder="First name" required>
 
         <label for="suffix" class="sr-only">Suffix</label>
-        <input type="suffix" id="inputSuffix" class="form-control" placeholder="Suffix" >
+        <input type="text" id="inputSuffix" class="form-control" placeholder="Suffix" >
 
         <label for="lastname" class="sr-only">Last name</label>
-        <input type="name" id="inputLastname" class="form-control" placeholder="Last name" required>
+        <input type="text" id="inputLastname" class="form-control" placeholder="Last name" required>
 
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
-        <div class="checkbox">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-        </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        <a href="register.php"><h3 class="form-signin-heading signup">Or sign up here</h3></a>
+
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" placeholder="Repeat password" required>
+       
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
       </form>
 
     </div> <!-- /container -->
