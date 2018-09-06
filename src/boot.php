@@ -6,8 +6,10 @@ if (session_status() === PHP_SESSION_NONE){
     }
 
 
-require 'db.php';
 require 'user.php';
+require 'diary.php';
+$user = new User();
+$diary = new Diary();
 
 // $db = new DB();
 // $db->Connect();
