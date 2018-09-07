@@ -26,15 +26,12 @@
 	      		<li class="nav-item active">
 	        		<a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
 	     		 </li>
-	      		<li class="nav-item">
-	        		<a class="nav-link" href="#">Features</a>
-	      		</li>
 	     		<li class="nav-item dropdown">
 			        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 			          	Account
 			        </a>
 			        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-			          	<a class="dropdown-item" href="#">My Diaries</a>
+			          	<a class="dropdown-item" href="index.php">My Diaries</a>
 			          	<a class="dropdown-item" href="accountsettings.php">Settings</a>
 			          	<div class="dropdown-divider"></div>
 			          	<?php 

@@ -135,6 +135,12 @@ class User{
 	}
 
 	public function delete($id_user) {
+		$d = new Diary();
+		$diaries = $d->getDiaries($id_user);
+		foreach ($diaries as $diary) {
+			$d->deleteDiary($diary['id_dagboek']);
+		}
+
 		$conn = $this->connect();
 		$sql = 'DELETE FROM gebruikers WHERE id_gebruiker = :id_user';
 		$stmt = $conn->prepare($sql);
