@@ -1,17 +1,13 @@
 <?php
-
 if($_SERVER['REQUEST_METHOD'] === 'POST'){
-			
-			$user->connect();
-			$user->login($_POST["email"], $_POST["password"]);
-			if (!empty($_SESSION['id_user'])) {
-				header('Location: index.php');
-			} else {
-				echo $user->get_error();
-
-			}
-
-		}
+	$user->connect();
+	$user->login($_POST["email"], $_POST["password"]);
+	if (!empty($_SESSION['id_user'])) {
+		header('Location: index.php');
+	} else {
+		echo $user->get_error();
+	}
+}
 ?>
 </br>
 <div class="row">

@@ -73,12 +73,21 @@ class User{
 	public function register($email, $firstname, $suffix, $lastname, $password)
 	{
 		$conn = $this->connect();
-		$hashedPass = password_hash($password, PASSWORD_BCRYPT, ['cost' => 8]);
-		$sql = 'INSERT INTO gebruikers (email, voornaam, tussenvoegsels, achternaam, wachtwoord) VALUES (:email, :firstname, :suffix, :lastname, :password)';
+		$sql = 'SELECT email FROM gebruikers WHERE email = :email';
 		$stmt = $conn->prepare($sql);
-		$stmt->execute(array(':email' => $email,':firstname' => $firstname,':suffix' => $suffix,':lastname' => $lastname,':password' => $hashedPass));
-		$conn = null;
-		return true;
+		$stmt->execute(array(':email' => $_POST['email']));
+		if($stmt->rowCount() >= 1) {
+			$this->error = $_POST['email']. " is already in use";
+			return false;
+		}else {
+			$hashedPass = password_hash($password, PASSWORD_BCRYPT, ['cost' => 8]);
+			$sql = 'INSERT INTO gebruikers (email, voornaam, tussenvoegsels, achternaam, wachtwoord) VALUES (:email, :firstname, :suffix, :lastname, :password)';
+			$stmt = $conn->prepare($sql);
+			$stmt->execute(array(':email' => $email,':firstname' => $firstname,':suffix' => $suffix,':lastname' => $lastname,':password' => $hashedPass));
+			$conn = null;
+			return true;
+		}
+		
 	}
 	public function update($id_user) {
 		$conn = $this->connect();

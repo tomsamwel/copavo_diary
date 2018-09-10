@@ -45,7 +45,7 @@ class Diary extends User{
    		$conn = $this->connect();
 		$sql = 'INSERT INTO posts (post, datum) VALUES (:diaryPost, :postDateTime)';
 		$stmt = $conn->prepare($sql);
-		$postDateTime = date("Y-m-d h:i:sa");
+		$postDateTime = date("Y-m-d");
 		$stmt->execute(array(':diaryPost' => $diaryPost, ':postDateTime' => $postDateTime));
 		//get post ID
 		$this->id_post = $conn->lastInsertId();
@@ -60,7 +60,8 @@ class Diary extends User{
    		$sql = 'SELECT dagboeken.id_dagboek, dagboeken.naam
 				FROM `gebruikers_dagboeken`
 				INNER JOIN dagboeken ON gebruikers_dagboeken.id_dagboek = dagboeken.id_dagboek
-				WHERE gebruikers_dagboeken.id_gebruiker = (:id_user)';
+				WHERE gebruikers_dagboeken.id_gebruiker = (:id_user)
+				ORDER BY id_dagboek DESC';
 		$stmt = $conn->prepare($sql);
 		$stmt->execute(array('id_user' => $id_user));
 		$diaries = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -83,7 +84,8 @@ class Diary extends User{
    		$sql = 'SELECT posts.id_post, posts.datum, posts.post
 				FROM `posts`
 				INNER JOIN dagboeken_posts ON dagboeken_posts.id_post = posts.id_post
-				WHERE dagboeken_posts.id_dagboek = (:id_diary)';
+				WHERE dagboeken_posts.id_dagboek = (:id_diary)
+				ORDER BY id_post DESC';
 		$stmt = $conn->prepare($sql);
 		$stmt->execute(array('id_diary' => $id_diary));
 		$posts = $stmt->fetchAll(PDO::FETCH_ASSOC);

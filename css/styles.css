@@ -4,3 +4,12 @@
 	border-radius: 4px;
 	box-shadow: 1px 1px #ddd;
 }
+ul, li {
+	list-style-type: none;
+}
+.posts {
+	padding: 0;
+}
+.wide {
+	width: 100%;
+}
