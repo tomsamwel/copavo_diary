@@ -65,7 +65,6 @@ class Diary extends User{
 		$stmt = $conn->prepare($sql);
 		$stmt->execute(array('id_user' => $id_user));
 		$diaries = $stmt->fetchAll(PDO::FETCH_ASSOC);
-		//var_dump($diaries);
 		return $diaries;
    	}
    	public function getDiaryName($id_diary){

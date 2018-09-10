@@ -5,7 +5,7 @@ ini_set('display_errors', 'On');
 
 if (empty($_SESSION['id_user'])) {
 	header('Location: index.php');
-} else {
+}else {
 	$user->get_user_info($_SESSION['id_user']);
 }
 
@@ -16,6 +16,7 @@ function value($key)
     }
 
 $errors = [];
+//Select which validations to apply
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['updateEmail'])) {
     	$variables = [
@@ -32,9 +33,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
             'password' => ['required', 'min:8', 'max:100', 'confirmed'],
     	];
     }
-    
+    //validate
     require 'forms/validations.php';
-
+    //error check
     if(count($errors) == 0) {
     	if (isset($_POST['deleteAcc'])) {
 			$user->delete($_SESSION['id_user']);
@@ -44,7 +45,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 		}
     }
 }
-
 ?>
 <?php if(@$errors || $user->get_error()) { ?>
     <div class="alert alert-danger">
@@ -70,10 +70,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 		<form class="form-group" id="updateName" method="POST" >
 			<label for="firstname">First name:</label>
 		    <input type="text" class="form-control" id="firstname" name="firstname" value="<?php echo ($user->get_firstname()); ?>" />
-
 		    <label for="suffix">Suffix:</label>
 		    <input type="text" class="form-control" id="suffix" name="suffix" value="<?php echo ($user->get_suffix()); ?>" />
-
 		    <label for="lastname">Last name:</label>
 		    <input type="text" class="form-control" id="lastname" name="lastname" value="<?php echo ($user->get_lastname()); ?>" />
 		    </br>
@@ -87,7 +85,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 		<form class="form-group" id="updatePassword" method="POST" >
 			<label for="password">Password:</label>
 		    <input type="password" class="form-control" id="password" name="password" placeholder="password" />
-
 		    <label for="password_confirmed">Verify password:</label>
 		    <input type="password" class="form-control" id="password_confirmed" name="password_confirmed" placeholder="password verification" required/>
 		    </br>
@@ -104,5 +101,5 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 	</div>
 </div>
 <?php 
-	require 'footer.html'; 
+require 'footer.html'; 
 ?>
